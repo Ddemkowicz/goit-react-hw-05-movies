@@ -30,7 +30,7 @@ const fetchGetMoviesDetails = async movieId => {
     `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
     options
   );
-  return (await response).data;
+  return await response;
 };
 
 const fetchGetMoviesCredits = async movieId => {

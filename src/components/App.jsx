@@ -1,45 +1,48 @@
-import { useEffect, useState } from 'react';
-import { api } from 'service/api';
-import Home from './Home/Home';
+import { useState } from 'react';
+// import { api } from 'service/api';
+import { Route, Routes } from 'react-router-dom';
+import SharedLayout from './SharedLayout/SharedLayout';
+import Home from '../pages/Home';
+import Movies from '../pages/Movies';
+import MoiveDetails from '../pages/MovieDetails';
+// import Cast from './Cast/Cast';
+// import Reviews from './Reviews/Reviews';
+import NotFound from 'pages/NotFound';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    api.fetchGetTrending().then(res => {
-      setMovies(res);
-    });
-  }, []);
-
-  const fetchLog = () => {
-    console.log(movies);
-    // try {
-    //   const movies = await api.fetchSearchMovies('batman');
-    //   console.log(movies);
-    // } catch (error) {
-    //   alert(error);
-    // } finally {
-    //   console.log('finally');
-    // }
+  const resetMovies = () => {
+    setMovies([]);
   };
 
+  // const fetchLog = () => {
+  //   console.log(movies);
+  //   // try {
+  //   //   const movies = await api.fetchSearchMovies('batman');
+  //   //   console.log(movies);
+  //   // } catch (error) {
+  //   //   alert(error);
+  //   // } finally {
+  //   //   console.log('finally');
+  //   // }
+  // };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      <button type="button" onClick={fetchLog}>
-        LOG
-      </button>
-      React homework template
-      <Home movies={movies} />
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout resetMovies={resetMovies} />}>
+        <Route index element={<Home movies={movies} setMovies={setMovies} />} />
+        <Route
+          path="movies"
+          element={<Movies movies={movies} setMovies={setMovies} />}
+        />
+
+        <Route path="movies/:movieId" element={<MoiveDetails />} />
+        {/*  <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>  */}
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };

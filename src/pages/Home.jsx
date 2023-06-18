@@ -1,22 +1,26 @@
 import React from 'react';
+import { useEffect } from 'react';
 // import PropTypes from 'prop-types';
-// import { api } from 'service/api';
+import { api } from 'service/api';
 
 const Home = props => {
-  const { movies } = props;
+  const { movies, setMovies } = props;
+
+  useEffect(() => {
+    api.fetchGetTrending().then(res => {
+      setMovies(res);
+      console.log(res);
+    });
+  }, [setMovies]);
+
   const src = `https://www.themoviedb.org/t/p/w220_and_h330_face`;
   return (
-    <div
-      style={{
-        width: '80%',
-        height: '80%',
-      }}
-    >
+    <div>
       <h1>Trending Movies</h1>
       <ul
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: 'repeat(3, 1fr)',
           gridTemplateRows: 'repeat(5, 1fr)',
           gridColumnGap: '20px',
           gridRowGap: '20px',
