@@ -19,7 +19,7 @@ const Reviews = () => {
 
   return (
     <>
-      {reviews.length > 0 && (
+      {reviews.length > 0 ? (
         <ul>
           {reviews.map(({ id, author_details: { name, rating }, content }) => (
             <li key={id}>
@@ -35,6 +35,8 @@ const Reviews = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        "We don't have any reviews for this movie."
       )}
     </>
   );

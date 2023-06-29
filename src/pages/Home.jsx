@@ -10,7 +10,6 @@ const Home = props => {
   useEffect(() => {
     api.fetchGetTrending().then(res => {
       setMovies(res);
-      console.log(res);
     });
   }, [setMovies]);
 

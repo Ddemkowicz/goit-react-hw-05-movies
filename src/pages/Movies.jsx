@@ -14,13 +14,12 @@ const Movies = props => {
 
   const onButtonClick = async () => {
     const newMovies = await api.fetchSearchMovies(query);
-    console.log(newMovies);
     setMovies(newMovies.results);
   };
-  const aaa = async () => {
-    const bbb = await api.fetchGetMoviesReviews(569094);
-    console.log(bbb);
-  };
+  // const aaa = async () => {
+  //   const bbb = await api.fetchGetMoviesReviews(455476);
+  //   console.log(bbb);
+  // };
 
   const src = `https://www.themoviedb.org/t/p/w220_and_h330_face`;
   return (
@@ -30,9 +29,9 @@ const Movies = props => {
         <button type="button" onClick={onButtonClick}>
           Search
         </button>
-        <button onClick={aaa} type="button">
+        {/* <button onClick={aaa} type="button">
           IDD
-        </button>
+        </button> */}
       </Header>
       {Movies.length > 0 ? (
         <ul
