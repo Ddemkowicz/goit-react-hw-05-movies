@@ -5,8 +5,8 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import Home from '../pages/Home';
 import Movies from '../pages/Movies';
 import MoiveDetails from '../pages/MovieDetails';
-// import Cast from './Cast/Cast';
-// import Reviews from './Reviews/Reviews';
+import Cast from './Cast/Cast';
+import Reviews from './Reviews/Reviews';
 import NotFound from 'pages/NotFound';
 
 export const App = () => {
@@ -15,18 +15,6 @@ export const App = () => {
   const resetMovies = () => {
     setMovies([]);
   };
-
-  // const fetchLog = () => {
-  //   console.log(movies);
-  //   // try {
-  //   //   const movies = await api.fetchSearchMovies('batman');
-  //   //   console.log(movies);
-  //   // } catch (error) {
-  //   //   alert(error);
-  //   // } finally {
-  //   //   console.log('finally');
-  //   // }
-  // };
 
   return (
     <Routes>
@@ -37,10 +25,10 @@ export const App = () => {
           element={<Movies movies={movies} setMovies={setMovies} />}
         />
 
-        <Route path="movies/:movieId" element={<MoiveDetails />} />
-        {/*  <Route path="cast" element={<Cast />} />
+        <Route path="movies/:movieId" element={<MoiveDetails />}>
+          <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
-        </Route>  */}
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

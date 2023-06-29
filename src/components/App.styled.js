@@ -38,3 +38,8 @@ export const Link = styled(NavLink)`
     background-color: orangered;
   }
 `;
+
+export const Item = styled.li`
+  border-bottom: 1px solid black;
+  padding-top: 10px;
+`;

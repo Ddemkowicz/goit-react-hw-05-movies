@@ -17,8 +17,8 @@ const Movies = props => {
     console.log(newMovies);
     setMovies(newMovies.results);
   };
-  const aaa = () => {
-    const bbb = api.fetchGetMoviesDetails(569094);
+  const aaa = async () => {
+    const bbb = await api.fetchGetMoviesReviews(569094);
     console.log(bbb);
   };
 
@@ -62,6 +62,7 @@ const Movies = props => {
               }}
               key={movie.id}
             >
+              {' '}
               <Link to={`${movie.id}`}>
                 <img src={src + movie.poster_path} alt={movie.title} />
                 <p>{movie.title ? movie.title : movie.name}</p>

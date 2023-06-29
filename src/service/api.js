@@ -46,7 +46,7 @@ const fetchGetMoviesReviews = async movieId => {
     `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=en-US&page=1`,
     options
   );
-  return (await response).data;
+  return (await response).data.results;
 };
 
 export const api = {
